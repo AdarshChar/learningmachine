@@ -12,6 +12,7 @@
           "duration": "45 minutes",
           "description": "Understanding what AI is, its history, and current applications",
           "content": {
+            "introduction": "Welcome to the fascinating world of Artificial Intelligence! In this foundational lesson, we'll explore what AI truly means, trace its remarkable journey through history, and examine how it's transforming our world today. By the end of this lesson, you'll have a solid understanding of AI's core concepts and be able to identify AI applications in your daily life.",
             "overview": "Artificial Intelligence (AI) is the simulation of human intelligence in machines. This lesson covers the basics of AI, its evolution, and real-world applications.",
             "sections": [
               {
@@ -36,13 +37,98 @@
                 ]
               }
             ],
+            "concepts": [
+              {
+                "title": "The Turing Test",
+                "description": "Proposed by Alan Turing in 1950, this test determines if a machine can exhibit intelligent behavior equivalent to or indistinguishable from that of a human. A computer passes the test if a human evaluator cannot reliably tell the difference between responses from a human and a computer."
+              },
+              {
+                "title": "Strong vs Weak AI",
+                "description": "Strong AI (Artificial General Intelligence) refers to AI that can perform any intellectual task that a human can do. Weak AI (Narrow AI) is designed to perform a specific task, like playing chess or recognizing speech."
+              },
+              {
+                "title": "Machine Learning vs Traditional Programming",
+                "description": "In traditional programming, humans write explicit rules. In machine learning, algorithms learn patterns from data to make predictions or decisions without being explicitly programmed for each scenario."
+              }
+            ],
+            "interactive_examples": [
+              {
+                "title": "AI Decision Tree Visualization",
+                "description": "Let's visualize how an AI system makes decisions using a simple decision tree for weather-based clothing recommendations.",
+                "visualization": "Weather Decision Tree:\n\n    [Weather?]\n    /        \\\n   /          \\\n[Sunny]    [Rainy]\n  |          |\n  |          |\n[Temp > 20°C] [Umbrella]\n  |          |\n  |          |\n[T-Shirt]   [Raincoat]\n\nThis simple tree shows how AI systems use multiple conditions to make decisions, similar to how humans think through problems step by step."
+              },
+              {
+                "title": "Pattern Recognition Exercise",
+                "description": "Can you identify the pattern in this sequence? This is exactly what AI systems do - they look for patterns in data.",
+                "exercise": "Sequence: 2, 4, 8, 16, 32, ?\n\nThink about it: Each number is multiplied by 2 to get the next number.\nThis is pattern recognition - a fundamental AI capability!\n\nYour answer: 64"
+              }
+            ],
+            "real_world_applications": [
+              {
+                "title": "Healthcare",
+                "description": "AI is revolutionizing healthcare through medical imaging analysis, drug discovery, personalized treatment plans, and early disease detection. For example, AI can analyze X-rays to detect lung cancer with accuracy comparable to radiologists."
+              },
+              {
+                "title": "Finance",
+                "description": "Banks use AI for fraud detection, algorithmic trading, credit scoring, and customer service chatbots. AI can analyze thousands of transactions per second to identify suspicious patterns."
+              },
+              {
+                "title": "Transportation",
+                "description": "Self-driving cars use AI to perceive their environment, make driving decisions, and navigate safely. Companies like Tesla, Waymo, and Uber are leading this revolution."
+              },
+              {
+                "title": "Entertainment",
+                "description": "Netflix and Spotify use AI to recommend content based on your preferences. Video games use AI for non-player characters and procedural content generation."
+              }
+            ],
             "code_examples": [
               {
                 "title": "Simple AI-like Decision Making",
-                "description": "A basic example of rule-based decision making",
-                "code": "def simple_ai_decision(temperature, humidity):\n    if temperature > 25 and humidity > 60:\n        return \"Turn on air conditioning\"\n    elif temperature < 15:\n        return \"Turn on heating\"\n    else:\n        return \"Maintain current settings\"\n\n# Example usage\nresult = simple_ai_decision(28, 70)\nprint(result)  # Output: Turn on air conditioning"
+                "description": "A basic example of rule-based decision making that mimics human decision processes",
+                "code": "def simple_ai_decision(temperature, humidity):\n    \"\"\"\n    A simple AI system that makes decisions based on environmental conditions.\n    This demonstrates how AI systems use multiple inputs to make intelligent decisions.\n    \"\"\"\n    if temperature > 25 and humidity > 60:\n        return \"Turn on air conditioning\"\n    elif temperature < 15:\n        return \"Turn on heating\"\n    else:\n        return \"Maintain current settings\"\n\n# Interactive example - try different values!\nprint(\"=== AI Climate Control System ===\")\nprint(\"Testing different scenarios:\")\n\nscenarios = [\n    (28, 70, \"Hot and humid day\"),\n    (10, 30, \"Cold winter day\"),\n    (22, 50, \"Comfortable spring day\")\n]\n\nfor temp, humidity, description in scenarios:\n    decision = simple_ai_decision(temp, humidity)\n    print(f\"{description}: {temp}°C, {humidity}% humidity → {decision}\")\n\n# Output:\n# Hot and humid day: 28°C, 70% humidity → Turn on air conditioning\n# Cold winter day: 10°C, 30% humidity → Turn on heating\n# Comfortable spring day: 22°C, 50% humidity → Maintain current settings"
+              },
+              {
+                "title": "Pattern Recognition in Data",
+                "description": "Demonstrating how AI systems identify patterns in data sequences",
+                "code": "def detect_pattern(sequence):\n    \"\"\"\n    A simple pattern recognition system that can identify arithmetic sequences.\n    This shows how AI systems learn to recognize patterns in data.\n    \"\"\"\n    if len(sequence) < 3:\n        return \"Need at least 3 numbers to detect pattern\"\n    \n    # Check for arithmetic sequence\n    differences = [sequence[i+1] - sequence[i] for i in range(len(sequence)-1)]\n    if len(set(differences)) == 1:\n        common_diff = differences[0]\n        next_number = sequence[-1] + common_diff\n        return f\"Arithmetic sequence with difference {common_diff}. Next number: {next_number}\"\n    \n    # Check for geometric sequence\n    ratios = [sequence[i+1] / sequence[i] for i in range(len(sequence)-1)]\n    if len(set(ratios)) == 1:\n        common_ratio = ratios[0]\n        next_number = sequence[-1] * common_ratio\n        return f\"Geometric sequence with ratio {common_ratio}. Next number: {next_number}\"\n    \n    return \"No clear arithmetic or geometric pattern detected\"\n\n# Test the pattern recognition system\nprint(\"=== AI Pattern Recognition System ===\")\n\ntest_sequences = [\n    [2, 4, 6, 8, 10],  # Arithmetic: +2\n    [1, 2, 4, 8, 16],  # Geometric: ×2\n    [1, 3, 6, 10, 15]  # No clear pattern\n]\n\nfor seq in test_sequences:\n    result = detect_pattern(seq)\n    print(f\"Sequence {seq}: {result}\")"
               }
             ],
+            "practice_questions": [
+              {
+                "question": "What is the main difference between Strong AI and Weak AI?",
+                "options": [
+                  "Strong AI is more expensive to develop",
+                  "Strong AI can perform any intellectual task a human can, while Weak AI is designed for specific tasks",
+                  "Strong AI uses more computational power",
+                  "Strong AI is only used in research labs"
+                ],
+                "correct_answer": 1,
+                "explanation": "Strong AI (Artificial General Intelligence) refers to AI that can perform any intellectual task that a human can do, while Weak AI (Narrow AI) is designed to perform specific tasks like playing chess or recognizing speech."
+              },
+              {
+                "question": "Which of the following is NOT a typical application of AI?",
+                "options": [
+                  "Medical diagnosis",
+                  "Weather forecasting",
+                  "Making coffee",
+                  "Language translation"
+                ],
+                "correct_answer": 2,
+                "explanation": "While AI can control coffee machines, making coffee itself is not a typical AI application. Medical diagnosis, weather forecasting, and language translation are all common AI applications."
+              },
+              {
+                "question": "What year did Alan Turing propose the Turing Test?",
+                "options": [
+                  "1945",
+                  "1950",
+                  "1956",
+                  "1960"
+                ],
+                "correct_answer": 1,
+                "explanation": "Alan Turing proposed the Turing Test in 1950 in his paper 'Computing Machinery and Intelligence.'"
+              }
+            ],
+            "summary": "In this lesson, we've explored the fundamental concepts of Artificial Intelligence. We learned that AI is the simulation of human intelligence in machines, capable of learning, reasoning, and problem-solving. We traced AI's history from the 1950s to today's breakthroughs, and examined real-world applications across healthcare, finance, transportation, and entertainment. We also practiced with interactive examples showing how AI systems make decisions and recognize patterns. Remember: AI is not just about robots - it's about creating intelligent systems that can help solve complex problems and improve our lives.",
             "resources": [
               {
                 "title": "AI: A Modern Approach",
@@ -52,6 +138,11 @@
               {
                 "title": "Stanford CS221: Introduction to AI",
                 "url": "https://stanford-cs221.github.io/",
+                "type": "Course"
+              },
+              {
+                "title": "MIT Introduction to AI",
+                "url": "https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-034-artificial-intelligence-fall-2010/",
                 "type": "Course"
               }
             ]
@@ -64,6 +155,7 @@
           "duration": "60 minutes",
           "description": "Essential mathematics for AI and machine learning",
           "content": {
+            "introduction": "Mathematics is the language of Artificial Intelligence. Every AI algorithm, from simple linear regression to complex neural networks, is built upon mathematical foundations. In this lesson, we'll explore the key mathematical concepts that power AI systems: linear algebra, calculus, probability, and statistics. Don't worry if you're not a math expert - we'll build understanding step by step with practical examples and visualizations.",
             "overview": "Mathematics is the foundation of AI. This lesson covers linear algebra, calculus, probability, and statistics essential for understanding AI algorithms.",
             "sections": [
               {
@@ -85,13 +177,102 @@
                 ]
               }
             ],
+            "concepts": [
+              {
+                "title": "Vectors and Vector Spaces",
+                "description": "Vectors are ordered lists of numbers that represent points in space. In AI, vectors represent data points, features, and word embeddings. Vector spaces allow us to measure distances and similarities between data points."
+              },
+              {
+                "title": "Matrices and Linear Transformations",
+                "description": "Matrices are rectangular arrays of numbers that represent linear transformations. In neural networks, weights are stored as matrices, and matrix multiplication performs the transformation from input to output layers."
+              },
+              {
+                "title": "Eigenvalues and Eigenvectors",
+                "description": "Eigenvalues and eigenvectors reveal the fundamental properties of matrices. In AI, they're used for dimensionality reduction (PCA), understanding data structure, and optimizing algorithms."
+              },
+              {
+                "title": "Gradients and Optimization",
+                "description": "The gradient is a vector of partial derivatives that points in the direction of steepest increase. In AI, we use gradients to minimize loss functions and train models through gradient descent."
+              }
+            ],
+            "interactive_examples": [
+              {
+                "title": "Vector Visualization",
+                "description": "Let's visualize how vectors work in 2D space and understand vector operations.",
+                "visualization": "2D Vector Space:\n\n    y\n    ^\n    |\n    |     • (3,4)\n    |    /\n    |   /  magnitude = 5\n    |  /   (Pythagorean theorem)\n    | /\n    |/________> x\n   O\n\nVector Operations:\n• Addition: (1,2) + (2,2) = (3,4)\n• Scalar multiplication: 2 × (1,2) = (2,4)\n• Dot product: (1,2) · (3,4) = 1×3 + 2×4 = 11\n\nThis shows how AI systems represent and manipulate data points!"
+              },
+              {
+                "title": "Matrix Multiplication Visualization",
+                "description": "Understanding how matrix multiplication transforms data in neural networks.",
+                "exercise": "Matrix Multiplication Example:\n\nA = [1 2]    B = [5 6]\n    [3 4]        [7 8]\n\nC = A × B\n\nStep 1: (1×5 + 2×7) = 19\nStep 2: (1×6 + 2×8) = 22\nStep 3: (3×5 + 4×7) = 43\nStep 4: (3×6 + 4×8) = 50\n\nResult: C = [19 22]\n          [43 50]\n\nThis transformation is exactly what happens in neural network layers!"
+              }
+            ],
+            "real_world_applications": [
+              {
+                "title": "Neural Networks",
+                "description": "Every layer in a neural network is a matrix multiplication followed by a non-linear activation function. The weights are matrices that transform input data to produce outputs."
+              },
+              {
+                "title": "Image Processing",
+                "description": "Images are represented as matrices of pixel values. Convolutional operations use small matrices (kernels) to detect edges, blur, or enhance images."
+              },
+              {
+                "title": "Natural Language Processing",
+                "description": "Words are converted to vectors (embeddings) that capture semantic meaning. Similar words have similar vector representations in high-dimensional space."
+              },
+              {
+                "title": "Recommendation Systems",
+                "description": "User preferences and item features are represented as vectors. Similarity calculations help recommend items based on vector similarity."
+              }
+            ],
             "code_examples": [
               {
                 "title": "Basic Matrix Operations with NumPy",
-                "description": "Demonstrating fundamental linear algebra operations",
-                "code": "import numpy as np\n\n# Create matrices\nA = np.array([[1, 2], [3, 4]])\nB = np.array([[5, 6], [7, 8]])\n\n# Matrix multiplication\nC = np.dot(A, B)\nprint(\"Matrix multiplication:\")\nprint(C)\n\n# Eigenvalues and eigenvectors\neigenvals, eigenvecs = np.linalg.eig(A)\nprint(\"\\nEigenvalues:\", eigenvals)\nprint(\"Eigenvectors:\")\nprint(eigenvecs)"
+                "description": "Demonstrating fundamental linear algebra operations used in AI",
+                "code": "import numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"=== AI Mathematics Fundamentals ===\")\nprint(\"1. Vectors and Vector Operations\")\nprint(\"-\" * 40)\n\n# Create vectors\nv1 = np.array([1, 2, 3])\nv2 = np.array([4, 5, 6])\n\nprint(f\"Vector 1: {v1}\")\nprint(f\"Vector 2: {v2}\")\nprint(f\"Vector addition: {v1 + v2}\")\nprint(f\"Dot product: {np.dot(v1, v2)}\")\nprint(f\"Vector magnitude: {np.linalg.norm(v1):.2f}\")\n\nprint(\"\\n2. Matrix Operations\")\nprint(\"-\" * 40)\n\n# Create matrices\nA = np.array([[1, 2], [3, 4]])\nB = np.array([[5, 6], [7, 8]])\n\nprint(\"Matrix A:\")\nprint(A)\nprint(\"\\nMatrix B:\")\nprint(B)\n\n# Matrix multiplication\nC = np.dot(A, B)\nprint(\"\\nMatrix multiplication (A × B):\")\nprint(C)\n\n# Eigenvalues and eigenvectors\neigenvals, eigenvecs = np.linalg.eig(A)\nprint(\"\\nEigenvalues of A:\", eigenvals)\nprint(\"Eigenvectors of A:\")\nprint(eigenvecs)\n\nprint(\"\\n3. Gradient Calculation Example\")\nprint(\"-\" * 40)\n\n# Simple function: f(x) = x² + 2x + 1\n# Derivative: f'(x) = 2x + 2\ndef function(x):\n    return x**2 + 2*x + 1\n\ndef derivative(x):\n    return 2*x + 2\n\nx_values = np.array([0, 1, 2, 3])\nprint(\"x values:\", x_values)\nprint(\"f(x):\", [function(x) for x in x_values])\nprint(\"f'(x):\", [derivative(x) for x in x_values])\n\n# This shows how gradients guide optimization in AI!"
+              },
+              {
+                "title": "Principal Component Analysis (PCA) Simulation",
+                "description": "Demonstrating dimensionality reduction using eigenvalues and eigenvectors",
+                "code": "import numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"=== Principal Component Analysis Demo ===\")\nprint(\"PCA uses eigenvalues and eigenvectors to reduce data dimensions\")\nprint(\"-\" * 50)\n\n# Generate sample 2D data with correlation\nnp.random.seed(42)\nx = np.random.normal(0, 1, 100)\ny = 0.8 * x + np.random.normal(0, 0.3, 100)\ndata = np.column_stack([x, y])\n\nprint(f\"Original data shape: {data.shape}\")\nprint(f\"First 5 data points:\")\nprint(data[:5])\n\n# Center the data\ncentered_data = data - np.mean(data, axis=0)\n\n# Calculate covariance matrix\ncov_matrix = np.cov(centered_data.T)\nprint(f\"\\nCovariance matrix:\")\nprint(cov_matrix)\n\n# Calculate eigenvalues and eigenvectors\neigenvals, eigenvecs = np.linalg.eig(cov_matrix)\n\nprint(f\"\\nEigenvalues: {eigenvals}\")\nprint(f\"Eigenvectors:\")\nprint(eigenvecs)\n\n# Sort by eigenvalues (descending)\nsorted_indices = np.argsort(eigenvals)[::-1]\neigenvals = eigenvals[sorted_indices]\neigenvecs = eigenvecs[:, sorted_indices]\n\nprint(f\"\\nSorted eigenvalues: {eigenvals}\")\nprint(f\"Explained variance ratio: {eigenvals / np.sum(eigenvals)}\")\n\n# Project data onto principal components\nprojected_data = centered_data.dot(eigenvecs)\n\nprint(f\"\\nProjected data shape: {projected_data.shape}\")\nprint(f\"First 5 projected points:\")\nprint(projected_data[:5])\n\n# This demonstrates how AI reduces data dimensions while preserving important information!"
               }
             ],
+            "practice_questions": [
+              {
+                "question": "What is the dot product of vectors [1, 2, 3] and [4, 5, 6]?",
+                "options": [
+                  "15",
+                  "32",
+                  "28",
+                  "21"
+                ],
+                "correct_answer": 1,
+                "explanation": "The dot product is calculated as 1×4 + 2×5 + 3×6 = 4 + 10 + 18 = 32."
+              },
+              {
+                "question": "In neural networks, what mathematical operation is performed at each layer?",
+                "options": [
+                  "Matrix addition",
+                  "Matrix multiplication",
+                  "Element-wise division",
+                  "Vector subtraction"
+                ],
+                "correct_answer": 1,
+                "explanation": "Each layer in a neural network performs matrix multiplication between the input and the weight matrix, followed by a non-linear activation function."
+              },
+              {
+                "question": "What do eigenvalues tell us about a matrix?",
+                "options": [
+                  "The number of rows and columns",
+                  "The fundamental properties and scaling factors of the matrix",
+                  "The determinant of the matrix",
+                  "The trace of the matrix"
+                ],
+                "correct_answer": 1,
+                "explanation": "Eigenvalues reveal the fundamental properties of a matrix, including how it scales vectors and its behavior under transformation."
+              }
+            ],
+            "summary": "In this lesson, we've explored the mathematical foundations that power AI systems. We learned how vectors represent data points, how matrices perform transformations in neural networks, how eigenvalues and eigenvectors enable dimensionality reduction, and how gradients guide optimization. These mathematical concepts are not just abstract theory - they're the building blocks of every AI algorithm. Understanding these foundations will help you grasp how AI systems process information and make decisions.",
             "resources": [
               {
                 "title": "Mathematics for Machine Learning",
@@ -102,6 +283,11 @@
                 "title": "3Blue1Brown Linear Algebra",
                 "url": "https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab",
                 "type": "Video Series"
+              },
+              {
+                "title": "Khan Academy Linear Algebra",
+                "url": "https://www.khanacademy.org/math/linear-algebra",
+                "type": "Course"
               }
             ]
           }
@@ -120,6 +306,7 @@
           "duration": "90 minutes",
           "description": "Core concepts of machine learning and different learning paradigms",
           "content": {
+            "introduction": "Machine Learning is the revolutionary technology that enables computers to learn from data without being explicitly programmed. Instead of following rigid rules, ML algorithms discover patterns in data and use them to make predictions or decisions. In this comprehensive lesson, we'll explore the three main paradigms of machine learning: supervised, unsupervised, and reinforcement learning. You'll understand how each type works, when to use them, and see practical implementations.",
             "overview": "Machine Learning is a subset of AI that enables computers to learn from data without being explicitly programmed. This lesson covers the three main types of ML.",
             "sections": [
               {
@@ -153,13 +340,102 @@
                 ]
               }
             ],
+            "concepts": [
+              {
+                "title": "The Learning Process",
+                "description": "Machine learning follows a systematic process: 1) Data collection and preprocessing, 2) Feature engineering, 3) Model selection, 4) Training, 5) Evaluation, and 6) Deployment. The goal is to find patterns that generalize to new, unseen data."
+              },
+              {
+                "title": "Training vs Testing",
+                "description": "We split data into training and testing sets to evaluate how well our model generalizes. Training data teaches the model, while testing data evaluates its performance on unseen examples. This prevents overfitting."
+              },
+              {
+                "title": "Bias vs Variance Trade-off",
+                "description": "Bias is the model's tendency to consistently predict the same value (underfitting). Variance is the model's sensitivity to small fluctuations in the training data (overfitting). Finding the right balance is crucial for good performance."
+              },
+              {
+                "title": "Feature Engineering",
+                "description": "The process of selecting, transforming, and creating features from raw data. Good features are crucial for model performance - garbage in, garbage out. This includes scaling, encoding categorical variables, and creating interaction terms."
+              }
+            ],
+            "interactive_examples": [
+              {
+                "title": "Supervised vs Unsupervised Learning Visualization",
+                "description": "Let's visualize the difference between supervised and unsupervised learning using a simple example.",
+                "visualization": "Supervised Learning (Classification):\n\nLabeled Data:\n• (2,3) → Class A    • (8,9) → Class B\n• (1,2) → Class A    • (9,8) → Class B\n• (3,2) → Class A    • (7,9) → Class B\n\nTask: Learn boundary between classes\n\nUnsupervised Learning (Clustering):\n\nUnlabeled Data:\n• (2,3)    • (8,9)\n• (1,2)    • (9,8)\n• (3,2)    • (7,9)\n\nTask: Discover natural groupings\n\nThis shows how supervision (labels) guides the learning process!"
+              },
+              {
+                "title": "Overfitting Demonstration",
+                "description": "Understanding the concept of overfitting through a simple example.",
+                "exercise": "Imagine you're learning to recognize cats:\n\nGood Learning (Generalization):\n- Sees: Persian cat, Siamese cat, tabby cat\n- Learns: Cats have whiskers, pointy ears, furry\n- Can recognize: New cat breeds\n\nOverfitting:\n- Sees: Persian cat with blue collar\n- Learns: Cats have blue collars\n- Fails: Recognizing cats without blue collars\n\nThis demonstrates why we need to test on unseen data!"
+              }
+            ],
+            "real_world_applications": [
+              {
+                "title": "Healthcare",
+                "description": "ML models analyze medical images to detect cancer, predict patient outcomes, and recommend treatments. They can process thousands of X-rays, MRIs, and CT scans to identify patterns human doctors might miss."
+              },
+              {
+                "title": "Finance",
+                "description": "Banks use ML for fraud detection, credit scoring, and algorithmic trading. Models analyze transaction patterns to identify suspicious activity and assess credit risk based on customer behavior."
+              },
+              {
+                "title": "E-commerce",
+                "description": "Recommendation systems suggest products based on user behavior and preferences. ML algorithms analyze purchase history, browsing patterns, and similar users to predict what customers might want to buy."
+              },
+              {
+                "title": "Autonomous Vehicles",
+                "description": "Self-driving cars use ML to recognize traffic signs, pedestrians, and other vehicles. They learn from millions of driving scenarios to make safe navigation decisions in real-time."
+              }
+            ],
             "code_examples": [
               {
                 "title": "Simple Linear Regression",
-                "description": "Implementing basic linear regression from scratch",
-                "code": "import numpy as np\nimport matplotlib.pyplot as plt\n\n# Generate sample data\nnp.random.seed(42)\nX = 2 * np.random.rand(100, 1)\ny = 4 + 3 * X + np.random.randn(100, 1)\n\n# Linear regression implementation\ndef linear_regression(X, y, learning_rate=0.01, epochs=1000):\n    m = len(X)\n    theta = np.random.randn(2, 1)\n    \n    for epoch in range(epochs):\n        # Add bias term\n        X_b = np.c_[np.ones((m, 1)), X]\n        \n        # Predictions\n        y_pred = X_b.dot(theta)\n        \n        # Gradients\n        gradients = 2/m * X_b.T.dot(y_pred - y)\n        \n        # Update parameters\n        theta = theta - learning_rate * gradients\n    \n    return theta\n\n# Train the model\nX_b = np.c_[np.ones((100, 1)), X]\ntheta_best = linear_regression(X, y)\nprint(f\"Intercept: {theta_best[0][0]:.2f}\")\nprint(f\"Slope: {theta_best[1][0]:.2f}\")"
+                "description": "Implementing basic linear regression from scratch to understand the learning process",
+                "code": "import numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"=== Machine Learning: Linear Regression ===\")\nprint(\"Learning to predict house prices based on square footage\")\nprint(\"-\" * 60)\n\n# Generate sample data (house prices vs square footage)\nnp.random.seed(42)\nsquare_feet = 2 * np.random.rand(100, 1)  # 0-2 thousand sq ft\nprices = 200 + 150 * square_feet + np.random.randn(100, 1) * 20  # Base price + per sq ft + noise\n\nprint(f\"Dataset: {len(square_feet)} houses\")\nprint(f\"Square footage range: {square_feet.min():.1f} - {square_feet.max():.1f} thousand sq ft\")\nprint(f\"Price range: ${prices.min():.0f} - ${prices.max():.0f}k\")\n\n# Linear regression implementation\ndef linear_regression(X, y, learning_rate=0.01, epochs=1000):\n    \"\"\"\n    Gradient descent implementation of linear regression.\n    This is how the model learns from data!\n    \"\"\"\n    m = len(X)\n    # Initialize parameters randomly\n    theta = np.random.randn(2, 1)  # [intercept, slope]\n    \n    print(f\"\\nTraining started with learning rate: {learning_rate}\")\n    print(f\"Initial parameters - Intercept: {theta[0][0]:.2f}, Slope: {theta[1][0]:.2f}\")\n    \n    for epoch in range(epochs):\n        # Add bias term (intercept)\n        X_b = np.c_[np.ones((m, 1)), X]\n        \n        # Make predictions\n        y_pred = X_b.dot(theta)\n        \n        # Calculate gradients (how to adjust parameters)\n        gradients = 2/m * X_b.T.dot(y_pred - y)\n        \n        # Update parameters (gradient descent step)\n        theta = theta - learning_rate * gradients\n        \n        # Print progress every 200 epochs\n        if epoch % 200 == 0:\n            loss = np.mean((y_pred - y) ** 2)\n            print(f\"Epoch {epoch}: Loss = {loss:.2f}, Intercept = {theta[0][0]:.2f}, Slope = {theta[1][0]:.2f}\")\n    \n    return theta\n\n# Train the model\nprint(\"\\n=== Training Process ===\")\ntheta_best = linear_regression(square_feet, prices)\n\nprint(f\"\\n=== Final Model ===\")\nprint(f\"Learned equation: Price = {theta_best[0][0]:.2f} + {theta_best[1][0]:.2f} × Square_Feet\")\nprint(f\"This means: Base price = ${theta_best[0][0]:.0f}k, Price per sq ft = ${theta_best[1][0]:.0f}k\")\n\n# Make predictions\nnew_house = np.array([[1.5]])  # 1500 sq ft\nprediction = theta_best[0][0] + theta_best[1][0] * new_house[0][0]\nprint(f\"\\nPrediction for 1500 sq ft house: ${prediction:.0f}k\")\n\n# This demonstrates how ML learns patterns from data!"
+              },
+              {
+                "title": "K-Means Clustering (Unsupervised Learning)",
+                "description": "Demonstrating unsupervised learning by finding natural groupings in data",
+                "code": "import numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"=== Unsupervised Learning: K-Means Clustering ===\")\nprint(\"Finding natural customer segments without labels\")\nprint(\"-\" * 60)\n\n# Generate customer data (income vs spending)\nnp.random.seed(42)\n\n# High-income, high-spending customers\nhigh_income = np.random.normal([80, 60], [10, 8], (50, 2))\n\n# Medium-income, medium-spending customers\nmedium_income = np.random.normal([50, 35], [8, 6], (50, 2))\n\n# Low-income, low-spending customers\nlow_income = np.random.normal([25, 15], [5, 4], (50, 2))\n\n# Combine all customers\ncustomers = np.vstack([high_income, medium_income, low_income])\n\nprint(f\"Dataset: {len(customers)} customers\")\nprint(f\"Features: Income (k$), Spending (k$)\")\nprint(f\"Income range: ${customers[:, 0].min():.0f}k - ${customers[:, 0].max():.0f}k\")\nprint(f\"Spending range: ${customers[:, 1].min():.0f}k - ${customers[:, 1].max():.0f}k\")\n\n# K-Means clustering implementation\ndef kmeans(X, k=3, max_iters=100):\n    \"\"\"\n    K-Means clustering algorithm.\n    Finds k clusters in the data without any labels!\n    \"\"\"\n    # Randomly initialize centroids\n    centroids = X[np.random.choice(len(X), k, replace=False)]\n    \n    print(f\"\\nInitial centroids:\")\n    for i, centroid in enumerate(centroids):\n        print(f\"Cluster {i+1}: Income=${centroid[0]:.0f}k, Spending=${centroid[1]:.0f}k\")\n    \n    for iteration in range(max_iters):\n        # Assign points to nearest centroid\n        distances = np.sqrt(((X - centroids[:, np.newaxis])**2).sum(axis=2))\n        labels = np.argmin(distances, axis=0)\n        \n        # Update centroids\n        new_centroids = np.array([X[labels == i].mean(axis=0) for i in range(k)])\n        \n        # Check for convergence\n        if np.all(centroids == new_centroids):\n            print(f\"\\nConverged after {iteration + 1} iterations!\")\n            break\n            \n        centroids = new_centroids\n        \n        if iteration % 20 == 0:\n            print(f\"Iteration {iteration}: Updated centroids\")\n    \n    return labels, centroids\n\n# Perform clustering\nprint(\"\\n=== Clustering Process ===\")\nlabels, centroids = kmeans(customers, k=3)\n\nprint(f\"\\n=== Results ===\")\nprint(f\"Found {len(np.unique(labels))} customer segments:\")\n\nfor i in range(3):\n    cluster_customers = customers[labels == i]\n    print(f\"\\nSegment {i+1}: {len(cluster_customers)} customers\")\n    print(f\"Average Income: ${cluster_customers[:, 0].mean():.0f}k\")\n    print(f\"Average Spending: ${cluster_customers[:, 1].mean():.0f}k\")\n    print(f\"Centroid: Income=${centroids[i][0]:.0f}k, Spending=${centroids[i][1]:.0f}k\")\n\nprint(\"\\nThis demonstrates how unsupervised learning discovers patterns without labels!\")"
               }
             ],
+            "practice_questions": [
+              {
+                "question": "What is the main difference between supervised and unsupervised learning?",
+                "options": [
+                  "Supervised learning is faster than unsupervised learning",
+                  "Supervised learning uses labeled data, unsupervised learning doesn't",
+                  "Supervised learning only works with numerical data",
+                  "Unsupervised learning is more accurate than supervised learning"
+                ],
+                "correct_answer": 1,
+                "explanation": "Supervised learning uses labeled training data (input-output pairs) to learn patterns, while unsupervised learning finds patterns in data without any labels."
+              },
+              {
+                "question": "What is overfitting in machine learning?",
+                "options": [
+                  "When the model performs poorly on training data",
+                  "When the model learns the training data too well but fails on new data",
+                  "When the model uses too many features",
+                  "When the model converges too quickly"
+                ],
+                "correct_answer": 1,
+                "explanation": "Overfitting occurs when a model learns the training data too well, including noise and irrelevant patterns, making it perform poorly on new, unseen data."
+              },
+              {
+                "question": "Which of the following is an example of supervised learning?",
+                "options": [
+                  "Customer segmentation",
+                  "Spam email detection",
+                  "Topic modeling",
+                  "Anomaly detection"
+                ],
+                "correct_answer": 1,
+                "explanation": "Spam email detection is supervised learning because it uses labeled examples (spam/not spam) to learn how to classify new emails."
+              }
+            ],
+            "summary": "In this comprehensive lesson, we've explored the three main paradigms of machine learning. We learned how supervised learning uses labeled data to make predictions, how unsupervised learning discovers hidden patterns without labels, and how reinforcement learning learns through trial and error. We practiced with real implementations of linear regression and k-means clustering, understanding the fundamental concepts of training, testing, and the bias-variance trade-off. Machine learning is transforming every industry by enabling computers to learn from data and make intelligent decisions.",
             "resources": [
               {
                 "title": "Hands-On Machine Learning",
@@ -170,6 +446,11 @@
                 "title": "Andrew Ng's Machine Learning Course",
                 "url": "https://www.coursera.org/learn/machine-learning",
                 "type": "Course"
+              },
+              {
+                "title": "Scikit-learn Tutorials",
+                "url": "https://scikit-learn.org/stable/tutorial/",
+                "type": "Tutorial"
               }
             ]
           }
