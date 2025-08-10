@@ -1,0 +1,180 @@
+{
+  "categories": [
+    {
+      "id": "fundamentals",
+      "name": "AI Fundamentals",
+      "description": "Core concepts and mathematical foundations",
+      "lessons": [
+        {
+          "id": "intro-ai",
+          "title": "Introduction to Artificial Intelligence",
+          "difficulty": "Beginner",
+          "duration": "45 minutes",
+          "description": "Understanding what AI is, its history, and current applications",
+          "content": {
+            "overview": "Artificial Intelligence (AI) is the simulation of human intelligence in machines. This lesson covers the basics of AI, its evolution, and real-world applications.",
+            "sections": [
+              {
+                "title": "What is AI?",
+                "content": "AI refers to systems that can perform tasks that typically require human intelligence. These include learning, reasoning, problem-solving, perception, and language understanding.",
+                "examples": [
+                  "Virtual assistants like Siri and Alexa",
+                  "Recommendation systems on Netflix and Amazon",
+                  "Autonomous vehicles",
+                  "Medical diagnosis systems"
+                ]
+              },
+              {
+                "title": "History of AI",
+                "content": "AI research began in the 1950s with the Dartmouth Conference. Key milestones include expert systems in the 1980s, machine learning in the 1990s, and deep learning breakthroughs in the 2010s.",
+                "examples": [
+                  "1950: Alan Turing's Turing Test",
+                  "1956: Dartmouth Conference",
+                  "1997: Deep Blue beats Kasparov",
+                  "2011: Watson wins Jeopardy",
+                  "2016: AlphaGo beats Lee Sedol"
+                ]
+              }
+            ],
+            "code_examples": [
+              {
+                "title": "Simple AI-like Decision Making",
+                "description": "A basic example of rule-based decision making",
+                "code": "def simple_ai_decision(temperature, humidity):\n    if temperature > 25 and humidity > 60:\n        return \"Turn on air conditioning\"\n    elif temperature < 15:\n        return \"Turn on heating\"\n    else:\n        return \"Maintain current settings\"\n\n# Example usage\nresult = simple_ai_decision(28, 70)\nprint(result)  # Output: Turn on air conditioning"
+              }
+            ],
+            "resources": [
+              {
+                "title": "AI: A Modern Approach",
+                "url": "https://aima.cs.berkeley.edu/",
+                "type": "Book"
+              },
+              {
+                "title": "Stanford CS221: Introduction to AI",
+                "url": "https://stanford-cs221.github.io/",
+                "type": "Course"
+              }
+            ]
+          }
+        },
+        {
+          "id": "math-foundations",
+          "title": "Mathematical Foundations",
+          "difficulty": "Beginner",
+          "duration": "60 minutes",
+          "description": "Essential mathematics for AI and machine learning",
+          "content": {
+            "overview": "Mathematics is the foundation of AI. This lesson covers linear algebra, calculus, probability, and statistics essential for understanding AI algorithms.",
+            "sections": [
+              {
+                "title": "Linear Algebra",
+                "content": "Vectors, matrices, eigenvalues, and eigenvectors are fundamental to AI. They're used in neural networks, dimensionality reduction, and optimization.",
+                "examples": [
+                  "Matrix operations for neural networks",
+                  "Eigenvalue decomposition for PCA",
+                  "Vector operations for word embeddings"
+                ]
+              },
+              {
+                "title": "Calculus",
+                "content": "Derivatives and gradients are crucial for optimization algorithms used in training neural networks.",
+                "examples": [
+                  "Gradient descent optimization",
+                  "Backpropagation in neural networks",
+                  "Loss function minimization"
+                ]
+              }
+            ],
+            "code_examples": [
+              {
+                "title": "Basic Matrix Operations with NumPy",
+                "description": "Demonstrating fundamental linear algebra operations",
+                "code": "import numpy as np\n\n# Create matrices\nA = np.array([[1, 2], [3, 4]])\nB = np.array([[5, 6], [7, 8]])\n\n# Matrix multiplication\nC = np.dot(A, B)\nprint(\"Matrix multiplication:\")\nprint(C)\n\n# Eigenvalues and eigenvectors\neigenvals, eigenvecs = np.linalg.eig(A)\nprint(\"\\nEigenvalues:\", eigenvals)\nprint(\"Eigenvectors:\")\nprint(eigenvecs)"
+              }
+            ],
+            "resources": [
+              {
+                "title": "Mathematics for Machine Learning",
+                "url": "https://mml-book.github.io/",
+                "type": "Book"
+              },
+              {
+                "title": "3Blue1Brown Linear Algebra",
+                "url": "https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab",
+                "type": "Video Series"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "machine-learning",
+      "name": "Machine Learning",
+      "description": "Supervised, unsupervised, and reinforcement learning",
+      "lessons": [
+        {
+          "id": "ml-basics",
+          "title": "Machine Learning Fundamentals",
+          "difficulty": "Beginner",
+          "duration": "90 minutes",
+          "description": "Core concepts of machine learning and different learning paradigms",
+          "content": {
+            "overview": "Machine Learning is a subset of AI that enables computers to learn from data without being explicitly programmed. This lesson covers the three main types of ML.",
+            "sections": [
+              {
+                "title": "Supervised Learning",
+                "content": "Learning from labeled data to make predictions on new, unseen data. Includes classification and regression problems.",
+                "examples": [
+                  "Email spam detection",
+                  "House price prediction",
+                  "Medical diagnosis",
+                  "Image classification"
+                ]
+              },
+              {
+                "title": "Unsupervised Learning",
+                "content": "Finding patterns in data without labels. Includes clustering, dimensionality reduction, and association rules.",
+                "examples": [
+                  "Customer segmentation",
+                  "Topic modeling",
+                  "Anomaly detection",
+                  "Market basket analysis"
+                ]
+              },
+              {
+                "title": "Reinforcement Learning",
+                "content": "Learning through interaction with an environment to maximize cumulative reward.",
+                "examples": [
+                  "Game playing (AlphaGo, Dota 2)",
+                  "Autonomous robotics",
+                  "Trading algorithms",
+                  "Resource management"
+                ]
+              }
+            ],
+            "code_examples": [
+              {
+                "title": "Simple Linear Regression",
+                "description": "Implementing basic linear regression from scratch",
+                "code": "import numpy as np\nimport matplotlib.pyplot as plt\n\n# Generate sample data\nnp.random.seed(42)\nX = 2 * np.random.rand(100, 1)\ny = 4 + 3 * X + np.random.randn(100, 1)\n\n# Linear regression implementation\ndef linear_regression(X, y, learning_rate=0.01, epochs=1000):\n    m = len(X)\n    theta = np.random.randn(2, 1)\n    \n    for epoch in range(epochs):\n        # Add bias term\n        X_b = np.c_[np.ones((m, 1)), X]\n        \n        # Predictions\n        y_pred = X_b.dot(theta)\n        \n        # Gradients\n        gradients = 2/m * X_b.T.dot(y_pred - y)\n        \n        # Update parameters\n        theta = theta - learning_rate * gradients\n    \n    return theta\n\n# Train the model\nX_b = np.c_[np.ones((100, 1)), X]\ntheta_best = linear_regression(X, y)\nprint(f\"Intercept: {theta_best[0][0]:.2f}\")\nprint(f\"Slope: {theta_best[1][0]:.2f}\")"
+              }
+            ],
+            "resources": [
+              {
+                "title": "Hands-On Machine Learning",
+                "url": "https://github.com/ageron/handson-ml3",
+                "type": "Book"
+              },
+              {
+                "title": "Andrew Ng's Machine Learning Course",
+                "url": "https://www.coursera.org/learn/machine-learning",
+                "type": "Course"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
