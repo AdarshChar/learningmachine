@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ lesson.title }} - Learning Machine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+    <style>
+        .lesson-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #667eea;
+        }
+        .content-section {
+            margin: 2rem 0;
+        }
+        .difficulty-badge {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+        .difficulty-beginner { background-color: #28a745; }
+        .difficulty-intermediate { background-color: #ffc107; color: #000; }
+        .difficulty-advanced { background-color: #dc3545; }
+        .navigation-buttons {
+            position: sticky;
+            top: 20px;
+        }
+        .concept-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        .warning-box {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-brain me-2"></i>Learning Machine
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('lessons') }}">Lessons</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('resources') }}">Resources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('practice') }}">Practice</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('progress') }}">Progress</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Lesson Header -->
+    <section class="lesson-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ url_for('lessons') }}" class="text-white">Lessons</a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">{{ lesson.title }}</li>
+                        </ol>
+                    </nav>
+                    <h1 class="display-4 fw-bold mb-3">{{ lesson.title }}</h1>
+                    <p class="lead mb-4">{{ lesson.description }}</p>
+                    <div class="d-flex gap-3 align-items-center">
+                        <span class="badge difficulty-{{ lesson.difficulty.lower() }} difficulty-badge">
+                            {{ lesson.difficulty }}
+                        </span>
+                        <span class="text-white">
+                            <i class="fas fa-clock me-1"></i>{{ lesson.duration }}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="navigation-buttons">
+                        <div class="d-grid gap-2">
+                            <a href="{{ url_for('practice') }}" class="btn btn-light">
+                                <i class="fas fa-code me-2"></i>Practice This Concept
+                            </a>
+                            <button class="btn btn-outline-light" onclick="markAsComplete()">
+                                <i class="fas fa-check me-2"></i>Mark as Complete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lesson Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Introduction -->
+                    <div class="content-section">
+                        <h2><i class="fas fa-info-circle me-2 text-primary"></i>Introduction</h2>
+                        <p>{{ lesson.content.introduction if lesson.content.introduction else "Welcome to this lesson! Let's dive into the concepts and learn together." }}</p>
+                    </div>
+
+                    <!-- Key Concepts -->
+                    {% if lesson.content.concepts %}
+                    <div class="content-section">
+                        <h2><i class="fas fa-lightbulb me-2 text-warning"></i>Key Concepts</h2>
+                        {% for concept in lesson.content.concepts %}
+                        <div class="concept-box">
+                            <h5>{{ concept.title }}</h5>
+                            <p>{{ concept.description }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- Code Examples -->
+                    {% if lesson.content.code_examples %}
+                    <div class="content-section">
+                        <h2><i class="fas fa-code me-2 text-success"></i>Code Examples</h2>
+                        {% for example in lesson.content.code_examples %}
+                        <div class="code-block">
+                            <h5>{{ example.title }}</h5>
+                            <p class="text-muted mb-3">{{ example.description }}</p>
+                            <pre><code class="language-python">{{ example.code }}</code></pre>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- Practice Exercise -->
+                    {% if lesson.content.exercise %}
+                    <div class="content-section">
+                        <h2><i class="fas fa-dumbbell me-2 text-info"></i>Practice Exercise</h2>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ lesson.content.exercise.title }}</h5>
+                                <p class="card-text">{{ lesson.content.exercise.description }}</p>
+                                <a href="{{ url_for('practice') }}" class="btn btn-primary">
+                                    <i class="fas fa-play me-2"></i>Start Exercise
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Summary -->
+                    <div class="content-section">
+                        <h2><i class="fas fa-clipboard-list me-2 text-secondary"></i>Summary</h2>
+                        <p>{{ lesson.content.summary if lesson.content.summary else "You've completed this lesson! Review the key concepts and practice the exercises to reinforce your learning." }}</p>
+                    </div>
+
+                    <!-- Next Steps -->
+                    <div class="content-section">
+                        <h2><i class="fas fa-arrow-right me-2 text-success"></i>Next Steps</h2>
+                        <div class="d-flex gap-3">
+                            <a href="{{ url_for('lessons') }}" class="btn btn-outline-primary">
+                                <i class="fas fa-list me-2"></i>Browse More Lessons
+                            </a>
+                            <a href="{{ url_for('practice') }}" class="btn btn-primary">
+                                <i class="fas fa-code me-2"></i>Practice Coding
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <div class="card sticky-top" style="top: 100px;">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-list me-2"></i>Lesson Progress</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 0%" id="progressBar"></div>
+                            </div>
+                            <p class="text-muted small">Complete the lesson to track your progress</p>
+                            
+                            <hr>
+                            
+                            <h6><i class="fas fa-bookmark me-2"></i>Quick Links</h6>
+                            <ul class="list-unstyled">
+                                <li><a href="#introduction" class="text-decoration-none">Introduction</a></li>
+                                {% if lesson.content.concepts %}
+                                <li><a href="#concepts" class="text-decoration-none">Key Concepts</a></li>
+                                {% endif %}
+                                {% if lesson.content.code_examples %}
+                                <li><a href="#examples" class="text-decoration-none">Code Examples</a></li>
+                                {% endif %}
+                                <li><a href="#summary" class="text-decoration-none">Summary</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 Learning Machine. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        function markAsComplete() {
+            // Update progress bar
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = '100%';
+            progressBar.textContent = '100%';
+            
+            // Show success message
+            alert('Lesson marked as complete! Great job!');
+        }
+    </script>
+</body>
+</html>
