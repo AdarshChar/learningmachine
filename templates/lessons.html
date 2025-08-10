@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons - Learning Machine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .lesson-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            border-radius: 15px;
+            height: 100%;
+        }
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .category-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+        }
+        .difficulty-badge {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+        }
+        .difficulty-beginner { background-color: #28a745; }
+        .difficulty-intermediate { background-color: #ffc107; color: #000; }
+        .difficulty-advanced { background-color: #dc3545; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-brain me-2"></i>Learning Machine
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('lessons') }}">Lessons</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('resources') }}">Resources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('practice') }}">Practice</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('progress') }}">Progress</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Category Header -->
+    <section class="category-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold">AI & Machine Learning Lessons</h1>
+            <p class="lead">Master the fundamentals and advanced concepts of artificial intelligence</p>
+        </div>
+    </section>
+
+    <!-- Lessons Content -->
+    <section class="py-5">
+        <div class="container">
+            {% for category in lessons.categories %}
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <i class="fas fa-folder-open me-2 text-primary"></i>
+                    {{ category.name }}
+                </h2>
+                <p class="text-muted mb-4">{{ category.description }}</p>
+                
+                <div class="row g-4">
+                    {% for lesson in category.lessons %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card lesson-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h5 class="card-title">{{ lesson.title }}</h5>
+                                    <span class="badge difficulty-{{ lesson.difficulty.lower() }} difficulty-badge">
+                                        {{ lesson.difficulty }}
+                                    </span>
+                                </div>
+                                <p class="card-text text-muted">{{ lesson.description }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">
+                                        <i class="fas fa-clock me-1"></i>{{ lesson.duration }}
+                                    </small>
+                                    <a href="{{ url_for('lesson_detail', lesson_id=lesson.id) }}" 
+                                       class="btn btn-primary btn-sm">
+                                        <i class="fas fa-play me-1"></i>Start Lesson
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 Learning Machine. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

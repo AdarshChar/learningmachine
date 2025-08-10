@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress - Learning Machine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .progress-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+        }
+        .progress-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            border-radius: 15px;
+        }
+        .progress-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .achievement-badge {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+        .achievement-unlocked {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+        .achievement-locked {
+            background: #e9ecef;
+            color: #6c757d;
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-brain me-2"></i>Learning Machine
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('lessons') }}">Lessons</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('resources') }}">Resources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('practice') }}">Practice</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('progress') }}">Progress</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Progress Header -->
+    <section class="progress-header">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-4">Your Learning Progress</h1>
+            <p class="lead">Track your journey and celebrate your achievements</p>
+        </div>
+    </section>
+
+    <!-- Overall Stats -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stats-card text-center">
+                        <i class="fas fa-book-open mb-3" style="font-size: 2rem;"></i>
+                        <h3 class="mb-2">12</h3>
+                        <p class="mb-0">Lessons Completed</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card text-center">
+                        <i class="fas fa-code mb-3" style="font-size: 2rem;"></i>
+                        <h3 class="mb-2">45</h3>
+                        <p class="mb-0">Practice Exercises</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card text-center">
+                        <i class="fas fa-clock mb-3" style="font-size: 2rem;"></i>
+                        <h3 class="mb-2">8.5</h3>
+                        <p class="mb-0">Hours Learned</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card text-center">
+                        <i class="fas fa-trophy mb-3" style="font-size: 2rem;"></i>
+                        <h3 class="mb-2">7</h3>
+                        <p class="mb-0">Achievements</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Overview -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h2 class="mb-4"><i class="fas fa-chart-line me-2 text-primary"></i>Learning Progress</h2>
+                    
+                    <!-- Category Progress -->
+                    <div class="card progress-card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Category Progress</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Python Basics</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Data Structures</span>
+                                    <span>60%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-info" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Object-Oriented Programming</span>
+                                    <span>40%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning" style="width: 40%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Machine Learning Fundamentals</span>
+                                    <span>20%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-danger" style="width: 20%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="card progress-card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Recent Activity</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline">
+                                <div class="d-flex mb-3">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check-circle text-success me-3"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1">Completed "Functions and Methods" lesson</h6>
+                                        <small class="text-muted">2 hours ago</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-code text-primary me-3"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1">Solved 3 practice exercises</h6>
+                                        <small class="text-muted">4 hours ago</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-trophy text-warning me-3"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1">Earned "Code Warrior" achievement</h6>
+                                        <small class="text-muted">1 day ago</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-book text-info me-3"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1">Started "Data Structures" lesson</h6>
+                                        <small class="text-muted">2 days ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Achievements -->
+                    <div class="card progress-card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-trophy me-2"></i>Achievements</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="text-center">
+                                        <div class="achievement-badge achievement-unlocked">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <h6 class="mb-1">First Steps</h6>
+                                        <small class="text-muted">Complete first lesson</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-center">
+                                        <div class="achievement-badge achievement-unlocked">
+                                            <i class="fas fa-code"></i>
+                                        </div>
+                                        <h6 class="mb-1">Code Warrior</h6>
+                                        <small class="text-muted">Complete 10 exercises</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-center">
+                                        <div class="achievement-badge achievement-unlocked">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                        <h6 class="mb-1">Time Master</h6>
+                                        <small class="text-muted">Learn for 5 hours</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-center">
+                                        <div class="achievement-badge achievement-locked">
+                                            <i class="fas fa-brain"></i>
+                                        </div>
+                                        <h6 class="mb-1">AI Master</h6>
+                                        <small class="text-muted">Complete ML course</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Learning Streak -->
+                    <div class="card progress-card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-fire me-2"></i>Learning Streak</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <h2 class="text-warning mb-2">7 Days</h2>
+                            <p class="text-muted mb-3">Keep up the great work!</p>
+                            <div class="d-flex justify-content-center">
+                                <div class="d-flex gap-1">
+                                    <div class="bg-success rounded" style="width: 20px; height: 20px;"></div>
+                                    <div class="bg-success rounded" style="width: 20px; height: 20px;"></div>
+                                    <div class="bg-success rounded" style="width: 20px; height: 20px;"></div>
+                                    <div class="bg-success rounded" style="width: 20px; height: 20px;"></div>
+                                    <div class="bg-success rounded" style="width: 20px; height: 20px;"></div>
+                                    <div class="bg-success rounded" style="width: 20px; height: 20px;"></div>
+                                    <div class="bg-success rounded" style="width: 20px; height: 20px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Next Goals -->
+                    <div class="card progress-card">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-target me-2"></i>Next Goals</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-circle text-success me-2"></i>
+                                    Complete OOP lesson
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-circle text-warning me-2"></i>
+                                    Solve 5 more exercises
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-circle text-info me-2"></i>
+                                    Reach 10 hours of learning
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-circle text-primary me-2"></i>
+                                    Earn "AI Master" achievement
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 Learning Machine. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

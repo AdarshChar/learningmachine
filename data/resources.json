@@ -1,1 +1,119 @@
-{"categories": []}
+{
+  "categories": [
+    {
+      "name": "Books",
+      "description": "Comprehensive books for learning AI and machine learning",
+      "resources": [
+        {
+          "title": "Python for Data Analysis",
+          "description": "Learn data manipulation and analysis with pandas",
+          "type": "Book",
+          "level": "Intermediate",
+          "url": "https://example.com/python-data-analysis"
+        },
+        {
+          "title": "Hands-On Machine Learning",
+          "description": "Practical guide to machine learning with scikit-learn and TensorFlow",
+          "type": "Book",
+          "level": "Advanced",
+          "url": "https://example.com/hands-on-ml"
+        },
+        {
+          "title": "Deep Learning with Python",
+          "description": "Introduction to deep learning using Keras",
+          "type": "Book",
+          "level": "Advanced",
+          "url": "https://example.com/deep-learning-python"
+        }
+      ]
+    },
+    {
+      "name": "Video Courses",
+      "description": "Video tutorials and courses for visual learners",
+      "resources": [
+        {
+          "title": "Python for Beginners",
+          "description": "Complete Python programming course for beginners",
+          "type": "Video",
+          "level": "Beginner",
+          "url": "https://example.com/python-beginners"
+        },
+        {
+          "title": "Machine Learning Fundamentals",
+          "description": "Core concepts and algorithms in machine learning",
+          "type": "Video",
+          "level": "Intermediate",
+          "url": "https://example.com/ml-fundamentals"
+        },
+        {
+          "title": "Neural Networks Deep Dive",
+          "description": "Advanced neural network architectures and training",
+          "type": "Video",
+          "level": "Advanced",
+          "url": "https://example.com/neural-networks"
+        }
+      ]
+    },
+    {
+      "name": "Articles and Tutorials",
+      "description": "In-depth articles and step-by-step tutorials",
+      "resources": [
+        {
+          "title": "Understanding Gradient Descent",
+          "description": "Comprehensive guide to the gradient descent algorithm",
+          "type": "Article",
+          "level": "Intermediate",
+          "url": "https://example.com/gradient-descent"
+        },
+        {
+          "title": "Data Preprocessing Best Practices",
+          "description": "Essential techniques for preparing your data",
+          "type": "Article",
+          "level": "Intermediate",
+          "url": "https://example.com/data-preprocessing"
+        },
+        {
+          "title": "Model Evaluation Metrics",
+          "description": "How to properly evaluate machine learning models",
+          "type": "Article",
+          "level": "Intermediate",
+          "url": "https://example.com/model-evaluation"
+        }
+      ]
+    },
+    {
+      "name": "Tools and Libraries",
+      "description": "Essential tools and libraries for AI development",
+      "resources": [
+        {
+          "title": "Jupyter Notebooks",
+          "description": "Interactive computing environment for data science",
+          "type": "Tool",
+          "level": "Beginner",
+          "url": "https://jupyter.org"
+        },
+        {
+          "title": "scikit-learn",
+          "description": "Machine learning library for Python",
+          "type": "Tool",
+          "level": "Intermediate",
+          "url": "https://scikit-learn.org"
+        },
+        {
+          "title": "TensorFlow",
+          "description": "Open-source machine learning framework",
+          "type": "Tool",
+          "level": "Advanced",
+          "url": "https://tensorflow.org"
+        },
+        {
+          "title": "PyTorch",
+          "description": "Deep learning framework with dynamic computation graphs",
+          "type": "Tool",
+          "level": "Advanced",
+          "url": "https://pytorch.org"
+        }
+      ]
+    }
+  ]
+}

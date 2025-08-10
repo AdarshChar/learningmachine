@@ -63,10 +63,132 @@ def run_code():
     
     # This is a simplified version - in production you'd want proper sandboxing
     try:
-        # Create a safe execution environment
-        local_vars = {}
-        exec(code, {"__builtins__": {}}, local_vars)
-        return jsonify({"success": True, "output": str(local_vars.get('result', 'Code executed successfully'))})
+        # Create a safe execution environment with basic builtins
+        safe_builtins = {
+            '__builtins__': {
+                'print': print,
+                'len': len,
+                'range': range,
+                'str': str,
+                'int': int,
+                'float': float,
+                'list': list,
+                'dict': dict,
+                'set': set,
+                'tuple': tuple,
+                'bool': bool,
+                'type': type,
+                'isinstance': isinstance,
+                'abs': abs,
+                'min': min,
+                'max': max,
+                'sum': sum,
+                'sorted': sorted,
+                'reversed': reversed,
+                'enumerate': enumerate,
+                'zip': zip,
+                'map': map,
+                'filter': filter,
+                'round': round,
+                'pow': pow,
+                'divmod': divmod,
+                'bin': bin,
+                'hex': hex,
+                'oct': oct,
+                'ord': ord,
+                'chr': chr,
+                'hash': hash,
+                'id': id,
+                'dir': dir,
+                'vars': vars,
+                'getattr': getattr,
+                'hasattr': hasattr,
+                'setattr': setattr,
+                'delattr': delattr,
+                'property': property,
+                'super': super,
+                'object': object,
+                'Exception': Exception,
+                'ValueError': ValueError,
+                'TypeError': TypeError,
+                'IndexError': IndexError,
+                'KeyError': KeyError,
+                'AttributeError': AttributeError,
+                'NameError': NameError,
+                'ZeroDivisionError': ZeroDivisionError,
+                'OverflowError': OverflowError,
+                'MemoryError': MemoryError,
+                'RecursionError': RecursionError,
+                'StopIteration': StopIteration,
+                'GeneratorExit': GeneratorExit,
+                'SystemExit': SystemExit,
+                'KeyboardInterrupt': KeyboardInterrupt,
+                'EOFError': EOFError,
+                'ImportError': ImportError,
+                'ModuleNotFoundError': ModuleNotFoundError,
+                'OSError': OSError,
+                'FileNotFoundError': FileNotFoundError,
+                'PermissionError': PermissionError,
+                'ProcessLookupError': ProcessLookupError,
+                'TimeoutError': TimeoutError,
+                'ConnectionError': ConnectionError,
+                'BrokenPipeError': BrokenPipeError,
+                'ConnectionAbortedError': ConnectionAbortedError,
+                'ConnectionRefusedError': ConnectionRefusedError,
+                'ConnectionResetError': ConnectionResetError,
+                'BlockingIOError': BlockingIOError,
+                'ChildProcessError': ChildProcessError,
+                'FileExistsError': FileExistsError,
+                'InterruptedError': InterruptedError,
+                'IsADirectoryError': IsADirectoryError,
+                'NotADirectoryError': NotADirectoryError,
+                'BufferError': BufferError,
+                'ArithmeticError': ArithmeticError,
+                'FloatingPointError': FloatingPointError,
+                'AssertionError': AssertionError,
+                'LookupError': LookupError,
+                'UnboundLocalError': UnboundLocalError,
+                'ReferenceError': ReferenceError,
+                'RuntimeError': RuntimeError,
+                'NotImplementedError': NotImplementedError,
+                'SyntaxError': SyntaxError,
+                'IndentationError': IndentationError,
+                'TabError': TabError,
+                'SystemError': SystemError,
+                'UnicodeError': UnicodeError,
+                'UnicodeDecodeError': UnicodeDecodeError,
+                'UnicodeEncodeError': UnicodeEncodeError,
+                'UnicodeTranslateError': UnicodeTranslateError,
+                'Warning': Warning,
+                'UserWarning': UserWarning,
+                'DeprecationWarning': DeprecationWarning,
+                'PendingDeprecationWarning': PendingDeprecationWarning,
+                'SyntaxWarning': SyntaxWarning,
+                'RuntimeWarning': RuntimeWarning,
+                'FutureWarning': FutureWarning,
+                'ImportWarning': ImportWarning,
+                'UnicodeWarning': UnicodeWarning,
+                'BytesWarning': BytesWarning,
+                'ResourceWarning': ResourceWarning,
+                'None': None,
+                'True': True,
+                'False': False,
+                'Ellipsis': Ellipsis,
+                'NotImplemented': NotImplemented,
+            }
+        }
+        
+        # Capture stdout to get print output
+        import io
+        import sys
+        from contextlib import redirect_stdout
+        
+        output = io.StringIO()
+        with redirect_stdout(output):
+            exec(code, safe_builtins, {})
+        
+        result = output.getvalue()
+        return jsonify({"success": True, "output": result if result else "Code executed successfully"})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)})
 
@@ -75,4 +197,4 @@ def progress():
     return render_template('progress.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5001)
